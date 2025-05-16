@@ -1,7 +1,6 @@
 package qwen.sdk.largemodel.image.impl;
 
 import qwen.sdk.factory.Configuration;
-import qwen.sdk.largemodel.chat.model.ChatResponse;
 import qwen.sdk.largemodel.image.ImageService;
 import qwen.sdk.largemodel.image.model.ImageRequest;
 import qwen.sdk.largemodel.image.model.ImageResponse;
@@ -31,6 +30,12 @@ public class ImageServiceImpl {
     public ResultResponse result(String taskId) throws IOException {
         Call<ResultResponse> call = imageService.result(configuration.getAuthorization(), taskId);
         Response<ResultResponse> execute = call.execute();
+        return execute.body();
+    }
+
+    public ImageResponse imageSynthesisByEdit(ImageRequest imageRequest) throws IOException {
+        Call<ImageResponse> call = imageService.imageSynthesisByEdit(configuration.getAuthorization(), imageRequest);
+        Response<ImageResponse> execute = call.execute();
         return execute.body();
     }
 }
