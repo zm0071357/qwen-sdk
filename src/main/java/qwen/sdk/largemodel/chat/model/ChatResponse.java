@@ -9,7 +9,6 @@ import java.util.List;
  * 对话响应体
  */
 @Getter
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatResponse {
     private int status_code;
     private String request_id;
@@ -19,10 +18,12 @@ public class ChatResponse {
     private Usage usage;
 
     @Getter
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Output {
         private String text;
         private String finish_reason;
         private List<Choices> choices;
+        private SearchInfo search_info;
 
         @Getter
         public static class Choices {
@@ -35,9 +36,24 @@ public class ChatResponse {
                 private String content;
             }
         }
+
+        @Getter
+        public static class SearchInfo {
+            List<SearchResults> search_results;
+
+            @Getter
+            public static class SearchResults {
+                public String site_name;
+                public String icon;
+                public int index;
+                public String title;
+                public String url;
+            }
+        }
     }
 
     @Getter
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Usage {
         private int input_tokens;
         private int output_tokens;

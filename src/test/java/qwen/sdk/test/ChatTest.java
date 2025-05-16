@@ -36,16 +36,20 @@ public class ChatTest {
                 .build());
         messages.add(ChatRequest.Input.Message.builder()
                 .role("user")
-                .content("你是谁？")
+                .content("介绍《黑神话：悟空》")
                 .build());
         ChatRequest request = ChatRequest.builder()
                 .model("qwen-plus")
                 .input(ChatRequest.Input.builder()
                         .messages(messages)
                         .build())
-                .parameters(
-                        ChatRequest.Parameters.builder()
+                .parameters(ChatRequest.Parameters.builder()
                                 .resultFormat("message")
+                                .enableSearch(true)
+                                .searchOptions(ChatRequest.Parameters.SearchOptions.builder()
+                                        .enableSource(true)
+                                        .forcedSearch(true)
+                                        .build())
                                 .build())
                 .build();
         ChatResponse response = chatServiceImpl.chat(request);
