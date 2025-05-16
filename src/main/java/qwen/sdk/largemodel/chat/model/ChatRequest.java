@@ -1,5 +1,6 @@
 package qwen.sdk.largemodel.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,19 +35,19 @@ public class ChatRequest {
         @Builder
         @AllArgsConstructor
         @NoArgsConstructor
-        public static class Message {
+        public static class Message<E> {
             private String role;
-            private String content;
-            private List<Content> contents;
+
+            private E content;
 
             @Data
             @Builder
             @AllArgsConstructor
             @NoArgsConstructor
             public static class Content {
-                private String type;
-                private String content;
-                private int fps;
+                private String image;
+                private String text;
+                private String audio;
             }
         }
     }

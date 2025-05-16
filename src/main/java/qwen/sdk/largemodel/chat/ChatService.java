@@ -21,4 +21,15 @@ public interface ChatService {
     Call<ChatResponse> chat(@Header("Authorization") String authorization,
                             @Body ChatRequest request);
 
+    /**
+     * 多模态对话 - 图像输入、视频输入、音频输入
+     * @param authorization 请求头
+     * @param request 对话请求体
+     * @return
+     */
+    @POST("/api/v1/services/aigc/multimodal-generation/generation")
+    @Headers("Content-Type: application/json")
+    Call<ChatResponse> chatWithMultimodal(@Header("Authorization") String authorization,
+                            @Body ChatRequest request);
+
 }

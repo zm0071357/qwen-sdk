@@ -31,9 +31,16 @@ public class ChatResponse {
             private Message message;
 
             @Getter
-            public static class Message {
+            public static class Message<E> {
                 private String role;
-                private String content;
+                private E content;
+
+                @Getter
+                public static class Content {
+                    private String image;
+                    private String text;
+                    private String audio;
+                }
             }
         }
 

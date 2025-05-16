@@ -57,4 +57,42 @@ public class ChatTest {
         log.info("返回结果:{}", JSON.toJSONString(response));
     }
 
+    @Test
+    public void testChatWithMultimodal() throws IOException {
+        List<ChatRequest.Input.Message> messages = new ArrayList<>();
+
+        List<ChatRequest.Input.Message.Content> systemContent = new ArrayList<>();
+        systemContent.add(ChatRequest.Input.Message.Content.builder().text("你是一个有用的助手").build());
+        messages.add(ChatRequest.Input.Message.builder()
+                .role("system")
+                .content(systemContent)
+                .build());
+
+        List<ChatRequest.Input.Message.Content> userContent = new ArrayList<>();
+        userContent.add(ChatRequest.Input.Message.Content.builder().image("https://i0.hdslb.com/bfs/im_new/f32fce8d237cd1685ca6bb19d4f1137a353044432.jpg").build());
+        userContent.add(ChatRequest.Input.Message.Content.builder().text("描述这张图片").build());
+        messages.add(ChatRequest.Input.Message.builder()
+                .role("user")
+                .content(userContent)
+                .build());
+
+        ChatRequest request = ChatRequest.builder()
+                .model("qwen-vl-plus")
+                .input(ChatRequest.Input.builder()
+                        .messages(messages)
+                        .build())
+                .parameters(ChatRequest.Parameters.builder()
+                        .resultFormat("message")
+//                        .enableSearch(true)
+//                        .searchOptions(ChatRequest.Parameters.SearchOptions.builder()
+//                                .enableSource(true)
+//                                .forcedSearch(true)
+//                                .build())
+                        .build())
+                .build();
+        ChatResponse response = chatServiceImpl.chatWithMultimodal(request);
+        log.info("请求参数:{}", JSON.toJSONString(request));
+        log.info("返回结果:{}", JSON.toJSONString(response));
+    }
+
 }

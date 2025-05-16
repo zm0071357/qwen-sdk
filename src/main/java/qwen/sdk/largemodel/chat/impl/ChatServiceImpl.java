@@ -26,4 +26,10 @@ public class ChatServiceImpl {
         return execute.body();
     }
 
+    public ChatResponse chatWithMultimodal(ChatRequest chatRequest) throws IOException {
+        Call<ChatResponse> call = chatService.chatWithMultimodal(configuration.getAuthorization(), chatRequest);
+        Response<ChatResponse> execute = call.execute();
+        return execute.body();
+    }
+
 }
