@@ -69,8 +69,10 @@ public class ChatTest {
                 .build());
 
         List<ChatRequest.Input.Message.Content> userContent = new ArrayList<>();
-        userContent.add(ChatRequest.Input.Message.Content.builder().image("https://i0.hdslb.com/bfs/im_new/f32fce8d237cd1685ca6bb19d4f1137a353044432.jpg").build());
-        userContent.add(ChatRequest.Input.Message.Content.builder().text("描述这张图片").build());
+        userContent.add(ChatRequest.Input.Message.Content.builder()
+                .video("https://help-static-aliyun-doc.aliyuncs.com/file-manage-files/zh-CN/20241115/cqqkru/1.mp4").fps(2)
+                .build());
+        userContent.add(ChatRequest.Input.Message.Content.builder().text("描述这个视频").build());
         messages.add(ChatRequest.Input.Message.builder()
                 .role("user")
                 .content(userContent)

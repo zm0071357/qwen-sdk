@@ -1,5 +1,6 @@
 package qwen.sdk.largemodel.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -48,6 +49,8 @@ public class ChatRequest {
                 private String image;
                 private String text;
                 private String audio;
+                private String video;
+                private Integer fps;
             }
         }
     }

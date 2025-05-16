@@ -40,6 +40,7 @@ public class ChatResponse {
                     private String image;
                     private String text;
                     private String audio;
+                    private String video;
                 }
             }
         }
