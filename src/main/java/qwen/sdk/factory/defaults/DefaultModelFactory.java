@@ -6,6 +6,8 @@ import qwen.sdk.factory.Configuration;
 import qwen.sdk.factory.ModelFactory;
 import qwen.sdk.largemodel.chat.ChatService;
 import qwen.sdk.largemodel.chat.impl.ChatServiceImpl;
+import qwen.sdk.largemodel.image.ImageService;
+import qwen.sdk.largemodel.image.impl.ImageServiceImpl;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -42,5 +44,17 @@ public class DefaultModelFactory implements ModelFactory {
                 .build()
                 .create(ChatService.class);
         return new ChatServiceImpl(chatService, configuration);
+    }
+
+    @Override
+    public ImageServiceImpl imageService() {
+        ImageService imageService = new Retrofit.Builder()
+                .baseUrl(configuration.getApiHost())
+                .client(httpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build()
+                .create(ImageService.class);
+        return new ImageServiceImpl(imageService, configuration);
     }
 }
