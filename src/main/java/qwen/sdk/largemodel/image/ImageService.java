@@ -25,7 +25,7 @@ public interface ImageService {
      * @param taskId 任务ID
      * @return
      */
-    @GET("https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}")
+    @GET("/api/v1/tasks/{task_id}")
     Call<ResultResponse> result(@Header("Authorization") String authorization,
                                 @Path("task_id") String taskId);
 

@@ -8,6 +8,8 @@ import qwen.sdk.largemodel.chat.ChatService;
 import qwen.sdk.largemodel.chat.impl.ChatServiceImpl;
 import qwen.sdk.largemodel.image.ImageService;
 import qwen.sdk.largemodel.image.impl.ImageServiceImpl;
+import qwen.sdk.largemodel.video.VideoService;
+import qwen.sdk.largemodel.video.impl.VideoServiceImpl;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -56,5 +58,17 @@ public class DefaultModelFactory implements ModelFactory {
                 .build()
                 .create(ImageService.class);
         return new ImageServiceImpl(imageService, configuration);
+    }
+
+    @Override
+    public VideoServiceImpl videoService() {
+        VideoService videoService = new Retrofit.Builder()
+                .baseUrl(configuration.getApiHost())
+                .client(httpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build()
+                .create(VideoService.class);
+        return new VideoServiceImpl(videoService, configuration);
     }
 }
