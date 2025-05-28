@@ -1,15 +1,15 @@
 package qwen.sdk.largemodel.chat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.Getter;
 
 import java.util.List;
 
 /**
- * 对话响应体
+ * 多模态对话响应体
  */
 @Getter
-public class ChatResponse {
+public class ChatMutiResponse {
     private int status_code;
     private String request_id;
     private String code;
@@ -33,14 +33,11 @@ public class ChatResponse {
             @Getter
             public static class Message {
                 private String role;
-                private Content content;
+                private List<Text> content;
 
                 @Getter
-                public static class Content {
-                    private String image;
+                public static class Text {
                     private String text;
-                    private String audio;
-                    private String video;
                 }
             }
         }

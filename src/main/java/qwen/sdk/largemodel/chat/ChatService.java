@@ -1,5 +1,6 @@
 package qwen.sdk.largemodel.chat;
 
+import qwen.sdk.largemodel.chat.model.ChatMutiResponse;
 import qwen.sdk.largemodel.chat.model.ChatRequest;
 import qwen.sdk.largemodel.chat.model.ChatResponse;
 import retrofit2.Call;
@@ -29,7 +30,7 @@ public interface ChatService {
      */
     @POST("/api/v1/services/aigc/multimodal-generation/generation")
     @Headers("Content-Type: application/json")
-    Call<ChatResponse> chatWithMultimodal(@Header("Authorization") String authorization,
-                            @Body ChatRequest request);
+    Call<ChatMutiResponse> chatWithMultimodal(@Header("Authorization") String authorization,
+                                              @Body ChatRequest request);
 
 }

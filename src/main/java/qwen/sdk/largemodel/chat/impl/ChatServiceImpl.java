@@ -2,6 +2,7 @@ package qwen.sdk.largemodel.chat.impl;
 
 import qwen.sdk.factory.Configuration;
 import qwen.sdk.largemodel.chat.ChatService;
+import qwen.sdk.largemodel.chat.model.ChatMutiResponse;
 import qwen.sdk.largemodel.chat.model.ChatRequest;
 import qwen.sdk.largemodel.chat.model.ChatResponse;
 import retrofit2.Call;
@@ -26,9 +27,9 @@ public class ChatServiceImpl {
         return execute.body();
     }
 
-    public ChatResponse chatWithMultimodal(ChatRequest chatRequest) throws IOException {
-        Call<ChatResponse> call = chatService.chatWithMultimodal(configuration.getAuthorization(), chatRequest);
-        Response<ChatResponse> execute = call.execute();
+    public ChatMutiResponse chatWithMultimodal(ChatRequest chatRequest) throws IOException {
+        Call<ChatMutiResponse> call = chatService.chatWithMultimodal(configuration.getAuthorization(), chatRequest);
+        Response<ChatMutiResponse> execute = call.execute();
         return execute.body();
     }
 
