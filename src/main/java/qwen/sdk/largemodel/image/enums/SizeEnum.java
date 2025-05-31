@@ -21,6 +21,6 @@ public enum SizeEnum {
     THREE_TWO("3:2", "960*1440"),
     TWO_THREE("2:3", "1440*960"),
     ;
-    private String aspect_ratio;
+    private String aspectRatio;
     private String resolution;
 }

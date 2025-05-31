@@ -9,6 +9,7 @@ import java.util.List;
  * 多模态对话响应体
  */
 @Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatMutiResponse {
     private int status_code;
     private String request_id;
