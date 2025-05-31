@@ -3,7 +3,11 @@ package qwen.sdk.largemodel.image.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 
+import java.util.List;
 
+/**
+ * 图像任务响应体
+ */
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultResponse {
@@ -19,16 +23,31 @@ public class ResultResponse {
         private String submit_time;
         private String scheduled_time;
         private String end_time;
-        private String video_url;
-        private String orig_prompt;
-        private String actual_prompt;
+        private List<Results> results;
+        private TaskMetrics task_metrics;
+
+        @Getter
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class Results {
+            private String orig_prompt;
+            private String actual_prompt;
+            private String url;
+            private String code;
+            private String message;
+        }
+
+        @Getter
+        public static class TaskMetrics {
+            private int TOTAL;
+            private int SUCCEEDED;
+            private int FAILED;
+        }
     }
 
     @Getter
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Usage {
-        private int video_duration;
-        private String video_ratio;
-        private int video_count;
+        private int image_count;
     }
 
 }
