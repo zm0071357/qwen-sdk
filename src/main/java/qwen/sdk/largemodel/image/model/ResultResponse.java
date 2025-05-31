@@ -1,6 +1,7 @@
 package qwen.sdk.largemodel.image.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import java.util.List;
@@ -38,8 +39,12 @@ public class ResultResponse {
 
         @Getter
         public static class TaskMetrics {
+
+            @JsonProperty("TOTAL")
             private int TOTAL;
+            @JsonProperty("SUCCEEDED")
             private int SUCCEEDED;
+            @JsonProperty("FAILED")
             private int FAILED;
         }
     }
