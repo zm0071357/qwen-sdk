@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.sse.EventSource;
+import okhttp3.sse.EventSources;
 
 /**
  * 配置类
@@ -33,4 +35,7 @@ public class Configuration {
         return "Bearer " + apiKey;
     }
 
+    public EventSource.Factory createRequestFactory() {
+        return EventSources.createFactory(okHttpClient);
+    }
 }

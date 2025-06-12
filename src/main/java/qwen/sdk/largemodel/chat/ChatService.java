@@ -1,5 +1,7 @@
 package qwen.sdk.largemodel.chat;
 
+import okhttp3.sse.EventSource;
+import okhttp3.sse.EventSourceListener;
 import qwen.sdk.largemodel.chat.model.ChatMutiResponse;
 import qwen.sdk.largemodel.chat.model.ChatRequest;
 import qwen.sdk.largemodel.chat.model.ChatResponse;
@@ -11,8 +13,12 @@ import retrofit2.http.*;
  */
 public interface ChatService {
 
+    String chatStreamUrl = "/api/v1/services/aigc/text-generation/generation";
+
+    String chatWithMultimodalStreamUrl = "/api/v1/services/aigc/multimodal-generation/generation";
+
     /**
-     * 对话 - 文本输入、流式输出、联网搜索
+     * 对话 - 文本输入、联网搜索
      * @param authorization 请求头
      * @param request 对话请求体
      * @return
@@ -23,7 +29,16 @@ public interface ChatService {
                             @Body ChatRequest request);
 
     /**
-     * 多模态对话 - 图像输入、视频输入、音频输入
+     * 对话 - 流式输出
+     * @param request
+     * @param eventSourceListener
+     * @return
+     */
+    EventSource chatWithStream(ChatRequest request,
+                               EventSourceListener eventSourceListener);
+
+    /**
+     * 多模态对话
      * @param authorization 请求头
      * @param request 对话请求体
      * @return
@@ -33,4 +48,12 @@ public interface ChatService {
     Call<ChatMutiResponse> chatWithMultimodal(@Header("Authorization") String authorization,
                                               @Body ChatRequest request);
 
+    /**
+     * 多模态对话 - 流式输出
+     * @param request
+     * @param eventSourceListener
+     * @return
+     */
+    EventSource chatWithMultimodalWithStream(ChatRequest request,
+                                             EventSourceListener eventSourceListener);
 }

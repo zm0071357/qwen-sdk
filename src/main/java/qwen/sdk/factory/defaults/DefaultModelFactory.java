@@ -34,6 +34,7 @@ public class DefaultModelFactory implements ModelFactory {
                 .writeTimeout(configuration.getWriteTimeOut(), TimeUnit.SECONDS)
                 .readTimeout(configuration.getReadTimeOut(), TimeUnit.SECONDS)
                 .build();
+        configuration.setOkHttpClient(httpClient);
     }
 
     @Override
